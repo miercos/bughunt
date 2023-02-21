@@ -1,0 +1,115 @@
+//// -- LEVEL 1
+//// -- Schemas, Tables and References
+
+// Creating tables
+// You can define the tables with full schema names
+
+
+  Table BugHound.Area {
+    id int [pk, increment]
+    name varchar
+    prog_id varchar
+    
+    "created at" varchar
+    Indexes {
+      (id) [pk]
+    }
+  }
+
+
+  Table BugHound.programs {
+    bug_id int [pk, increment]
+    program varchar
+    area varchar
+    report_type varchar
+    problem_summary varchar
+    problem varchar
+    suggested_fix varchar
+    reproducible varchar
+    report_by ENUM
+    date timestamp
+    functional_area varchar
+    assigned_to ENUM
+    comment varchar
+    status ENUM
+    priority ENUM
+    resolution varchar
+    resolved_by ENUM
+    tested_by ENUM
+    product ENUM
+    created_by ENUM
+    
+    "created at" varchar
+   
+    Indexes {
+      (bug_id) [pk]
+    }
+  }
+
+
+
+
+  
+  Table BugHound.authors {
+    id int [pk, increment]
+    name varchar
+    email varchar
+    
+    "created at" varchar
+    Indexes {
+      (id, email) [pk]
+    }
+  }
+  
+  
+  
+  
+  Table BugHound.developers {
+    id int [pk, increment]
+    name varchar
+    email varchar
+    
+    "created at" varchar
+    Indexes {
+      (id, email) [pk]
+    }
+  }
+
+
+  Table BugHound.employees {
+    id int [pk, increment]
+    name varchar
+    email varchar
+    user_level ENUM
+    
+    "created at" varchar
+    Indexes {
+      (id, email) [pk]
+    }
+  }
+    
+
+Table BugHound.Product {
+    id int [pk, increment]
+    name varchar
+    version varchar
+    
+    "created at" varchar
+    Indexes {
+      (id) [pk]
+    }
+  }
+
+
+  // Creating references
+  // You can also define relaionship separately
+  // > many-to-one; < one-to-many; - one-to-one; <> many-to-many
+  
+  Ref: BugHound.programs.report_by > BugHound.authors.name
+  Ref: BugHound.programs.assigned_to > BugHound.developers.name
+  Ref: BugHound.programs.product > BugHound.Product.name
+  Ref: BugHound.employees.name > BugHound.developers.name
+  Ref: BugHound.employees.name > BugHound.authors.name
+  Ref: BugHound.Area.prog_id - BugHound.programs.bug_id
+  
+ 
