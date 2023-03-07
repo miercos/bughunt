@@ -4,12 +4,9 @@ from .models import Product, Employee, Bugs
 
 
 
-# LAMAR IS BAck
-
-
 def product_list(request):
     products = Product.objects.all()
-    return render(request, 'product_list.html', {'products': products})
+    return render(request, 'base.html', {'products': 'products'})
 
 def product_detail(request, pk):
     product = Product.objects.get(pk=pk)

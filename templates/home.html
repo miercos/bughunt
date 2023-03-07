@@ -1,0 +1,447 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+HOME
+{% endblock %}
+
+{% block navbar-active %}
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+ 
+<ul class="navbar-nav ml-auto">
+  <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+  <li class="nav-item active">
+      <a class="nav-link " href="{% url 'home' %}"><i class="fas fa-tachometer-alt"></i> Home</a>
+  </li>
+  <li class="nav-item ">
+      <a class="nav-link" href="{% url 'About-Us' %}"><i class="far fa-address-book"></i> About</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" href="{% url 'services' %}"><i class="far fa-clone"></i> Services</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" href="{% url 'contact-us' %}"><i class="far fa-calendar-alt"></i> Contact</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" href="{% url 'Portal' %}"><i class="far fa-chart-bar"></i> Portal</a>
+  </li>
+</ul>
+
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- FIRST CONTAINER -->
+<div class="container-flex ">
+    <div class="row row1">
+        <div class="col-lg-8">
+            <h1>We craft user centered solutions for your digital future.</h1>       
+            <p>Every product is unique, but so is also our tailored process:<br>
+                we fuse strategy, creation and engineering.
+                To genuinely innovate, we foster synergies beyond the established.</p>
+            <div class="row2">
+                <!-- <button class="custom-btn btn-13">Request A Quote</button> -->
+                <button class="btnc btn-shine" data-toggle="modal" data-target=".bd-example-modal-lg"><span>Request A Quote</span></button>
+                
+            </div>
+        </div>
+        <div class="col-lg-4 row01">
+          <!-- Button trigger modal -->
+         
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" data-toggle="modal" data-target=".bd-example-modal-lg">Get Quote</h5>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+      <div class="modal-body">
+        
+        <form action="GetQuote" method="POST">
+          {% csrf_token %}
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" id="" name="qname" placeholder="Enter Your Name *" required>
+              </div>
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" id="" name="qphone"placeholder="Enter Phone No *" required>
+              </div>
+              <div class="form-group col-md-6">
+              <input type="email" class="form-control" id="" name="qemail" placeholder="Enter Your Email ">
+              </div>
+              <div class="form-group col-md-6">
+              <input type="text" class="form-control" id="" name="qbussiness" placeholder="Business Name" required>
+              </div>
+              <div class="form-group col-md-6">
+                <input type="number" class="form-control" id="" name="totalpage" placeholder="Estimated No of Pages ">
+                </div>
+                <div class="form-group col-md-6 pl-3">
+                  <h5 class="float-left" >Select  a Stack:</h5>
+                  <select class="modal-select" id="stack" name="stack">
+                    <option value="volvo">Can leave blank </option>
+                    <option value="Django">Django</option>
+                    <option value="Wordpress">Wordpress</option>
+                    <option value="PHP">PHP</option>
+                    <option value="audi">flask</option>
+                    <option value="MERN">MERN</option>
+                    <option value="MEAN">MEAN</option>
+                    <option value="Laravel">Laravel</option>
+                    <option value="Spring">Spring</option>
+                  </select> 
+                </div>
+                <div class="form-group col-md-6">
+                  <h5 class="float-left" >Have Existing Tech Team:</h5>
+                  <input type="checkbox" id="havetech" name="qteam" value="1">
+                  </div>
+                  <div class="form-group col-md-6">                  
+                  <h5 class="float-left" >Type:</h5>
+                  <div class="form-check-inline">
+                    
+                    <input class="form-check-input" type="radio" name="qtype" value="Dynamic" id="flexRadioDefault2" checked>
+                    <label class="form-check-label" for="qtype">
+                      Dynamic
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="qtype" value="Static" id="flexRadioDefault2" checked>
+                    <label class="form-check-label" for="qtype">
+                      Static
+                    </label>
+                  </div>
+                 </div> 
+            </div>
+            <!-- <button type="submit" class="custom-btn btn-7">Submit</button> -->
+            <div class="modal-footer">
+              <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+              <!-- <button type="submit" class="btn btn-primary">Get Quote</button> -->
+              <button type="submit" class="btnc btn-shine" data-toggle="modal" data-target=".bd-example-modal-lg"><h5>Request Quote</h5></button>
+
+            </div>
+          </form> 
+      </div>
+    </div>
+  </div>
+</div>
+          <!-- <p>
+            Your Digital Strategy Partner
+            <span>
+              CanTech
+            </span>
+            &mdash; Awesome digital experience. &mdash;
+          </p> -->
+        </div>
+    </div>
+    <!-- SECOND CONTAINER -->
+    <div class="container-fluid">
+        <div class="row row3">
+            <div class="col-md-6">
+                <h3><span>CanTech</span> - Your digital strategy partner to craft awesome digital experience.</h3>
+                <br>
+                <p>When it comes to a Development company that’s reliable and produces timely results, then you must opt for <span>Cantech.</span> Our company provides a host of services like Web application development for Business, Individual Profile Development, Website Design, Marketing And SEO that power brands and start-ups.Our Aim is to provide Development, Maintenance and Improvement across diverse range of industries to provide qualitative experience to everyone. We’ve worked on a host of projects and have a ton of experience which is beneficial for both parties. We have expertise in creating responsive and scalable Web apps. Our experience will help you not only in sustaining your business but also in growing it by manifolds.</p>
+
+                <h3 class="letsbuild">Lets Build Something Amazing together!</h3>
+                <!-- <button class="custom-btn btn-13">Request A Quote</button> -->
+                <button class="btnc btn-shine" data-toggle="modal" data-target=".bd-example-modal-lg"><span>Request A Quote</span></button>
+
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" >
+                        <div class=" funfct srcl1" >
+                            <img src="{% static 'app/images/support.png' %}" alt="">
+                            <h5>100%</h5>
+                            <p><b>Client Satisfaction</b></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" >
+                        <div class=" funfct srcl2" >
+                            <img src="{% static 'app/images/customer-support.png' %}" alt="">
+                            <h5>24/7</h5>
+                            <p><b>Customer Support</b></p>
+                        </div>
+                    </div><div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" >
+                        <div class=" funfct srcl1" >
+                            <img src="{% static 'app/images/technical-support.png' %}" alt="">
+                            <h5>100%</h5>
+                            <p><b>Telented Squad</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 3rd Section SERVICES -->
+        {% include 'serv.html' %}
+            
+            
+        </div>
+        <!-- 4Th Section -->
+        <div class="row5">
+            <div class="container" >
+            <div class="row" >
+                <div class="col-md-6">
+                    <h4><span>WHY CHOOSE US ?</span></h4>
+                    <br>
+                    <h2>We create <span>smart digital solutions</span> for individuals, startup companies, & brands.</h2>
+                    
+                    <!-- details -->
+                    <div class="container-fluid" >
+                        <img src="{% static 'app/images/approved.png' %}" alt="" height="100px">
+                        <div class="det-body">
+                            <h4>Transformative technology</h4>
+                            <p>We constantly aspire to break boundaries and set new standards through the power of virtualization.</p>
+                        </div>
+                    </div>
+                    <div class="container-fluid" >
+                        <img src="{% static 'app/images/work.png' %}" alt="" height="100px">
+                        <div class="det-body">
+                            <h4>Excellence with purpose</h4>
+                            <p>We don’t innovate for the sake of it - we put forth carefully crafted, well-designed products to answer real challenges in the real world.</p>
+                        </div>
+                    </div>
+                    <div class="container-fluid" >
+                        <img src="{% static 'app/images/good-rating.png' %}" alt="" height="100px">
+                        <div class="det-body">
+                            <h4>Committed to our Clients</h4>
+                            <p>We're dedicated to supporting our clients who seek to create truly frictionless, secure, and accessible applications.</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-6" style="display: block; margin:auto; text-align:center">
+                    <img src="{% static 'app/images/banner1.gif' %}" class="banner1" alt="">
+                    <br>
+                    <p>A great team is a reason behind the success of your project. At Cantech, we’ve industry experts that work as a unit and help you to accomplish your goals.</p>
+                    <button class="custom-btn btn-12" data-toggle="modal" data-target=".bd-example-modal-lg"><span class="btn-12-span">Click here !</span><span class="btn-12-span">Get Quote</span></button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- 5th Section -->
+        <div class="row6" >
+            <div class="container" >
+                <h6 class="row4h6">Industries We Serve</h6>
+                <p>Speed up building your app with a passionate Brancosoft experts helping you with not just the UI/UX, but also setting up your whole design, integration, publications in the stores and more.</p>
+
+                <div class="row">
+                    <!-- industries -->
+                    <div class="col-xs-6 col-md-3">
+                        <div class="btn btn-3 hover-border-2">
+                            <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                              <rect class="shape" height="100%" width="320" />
+                            </svg>
+                             <div class="text">
+                                <img src="{% static 'app/images/house.svg' %}" alt="" height="50px">
+                                <h5>Real Estate</h5>
+                             </div>
+                          </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="btn btn-3 hover-border-2">
+                            <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                              <rect class="shape" height="100%" width="320" />
+                            </svg>
+                             <div class="text">
+                                <img src="{% static 'app/images/travel-case.svg' %}" alt="" height="50px">
+                                <h5>Tour & Travels</h5>
+                             </div>
+                          </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="btn btn-3 hover-border-2">
+                            <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                              <rect class="shape" height="100%" width="320" />
+                            </svg>
+                             <div class="text">
+                                <img src="{% static 'app/images/education.svg' %}" alt="" height="50px">
+                                <h5>Education</h5>
+                             </div>
+                          </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="btn btn-3 hover-border-2">
+                            <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                              <rect class="shape" height="100%" width="320" />
+                            </svg>
+                             <div class="text">
+                                <img src="{% static 'app/images/transport.svg' %}" alt="" height="50px">
+                                <h5>Transport</h5>
+                             </div>
+                          </div>
+                    </div>
+                    
+                    <div class="col-xs-6 col-md-3">
+                        <div class="btn btn-3 hover-border-2">
+                            <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                              <rect class="shape" height="100%" width="320" />
+                            </svg>
+                             <div class="text">
+                                <img src="{% static 'app/images/event.svg' %}" alt="" height="50px">
+                                <h5>Event</h5>
+                             </div>
+                          </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="btn btn-3 hover-border-2">
+                            <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                              <rect class="shape" height="100%" width="320" />
+                            </svg>
+                             <div class="text">
+                                <img src="{% static 'app/images/ecomm.svg' %}" alt="" height="50px">
+                                <h5>E-Commerce</h5>
+                             </div>
+                          </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="btn btn-3 hover-border-2">
+                            <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                              <rect class="shape" height="100%" width="320" />
+                            </svg>
+                             <div class="text">
+                                <img src="{% static 'app/images/healthcare.svg' %}" alt="" height="50px">
+                                <h5>HealthCare</h5>
+                             </div>
+                          </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="btn btn-3 hover-border-2">
+                            <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                              <rect class="shape" height="100%" width="320" />
+                            </svg>
+                             <div class="text">
+                                <img src="{% static 'app/images/money-growth.svg' %}" alt="" height="50px">
+                                <h5>Finance</h5>
+                             </div>
+                          </div>
+                    </div>
+                    
+                    <div class="col-xs-6 col-md-3">
+                        <div class="btn btn-3 hover-border-2">
+                            <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                              <rect class="shape" height="100%" width="320" />
+                            </svg>
+                             <div class="text">
+                                <img src="{% static 'app/images/restaurant.svg' %}" alt="" height="50px">
+                                <h5>Restaurant</h5>
+                             </div>
+                          </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="btn btn-3 hover-border-2">
+                            <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                              <rect class="shape" height="100%" width="320" />
+                            </svg>
+                             <div class="text">
+                                <img src="{% static 'app/images/ondemand.svg' %}" alt="" height="50px">
+                                <h5>On Demand</h5>
+                             </div>
+                          </div>
+                    </div>
+                    
+                    <div class="col-xs-6 col-md-3">
+                        <div class="btn btn-3 hover-border-2">
+                            <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                              <rect class="shape" height="100%" width="320" />
+                            </svg>
+                             <div class="text">
+                                <img src="{% static 'app/images/dealership.png' %}" alt="" height="50px">
+                                <h5>Dealerships</h5>
+                             </div>
+                          </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="btn btn-3 hover-border-2">
+                            <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                              <rect class="shape" height="100%" width="320" />
+                            </svg>
+                             <div class="text">
+                                <img src="{% static 'app/images/enterprise.png' %}" alt="" height="50px">
+                                <h5>Firms</h5>
+                             </div>
+                          </div>
+                    </div>
+                    <!-- industries end -->
+                </div>
+            </div>
+        </div>
+        <!-- 5th Section End ROW6 END -->
+        <!-- CONTACT FORM -->
+        {% include 'contactform.html' %}
+        <!-- ROW8 END -->
+        <!-- SOCIAL MEDIA -->
+        <!-- <div class="row9">
+          <ul class="accordion"> -->
+              <!-- <h1 class="row4h6">SOCIAL MEDIA MARKETING</h1> -->
+              <!-- <li class="tabs tab1" style="width: 450px;">
+                <div class="social-links twitter-icon row4h6" >SOCIAL MEDIA MARKETING</div>
+              </li>
+              <li class="tabs">
+                <div class="social-links facebook-icon">
+                  <a href="https://facebook.com">Facebook</a>
+                </div>
+                <div class="paragraph">
+                  <h1>Facebook</h1>
+                  <p>Where I get to stalk my friends and let them stalk me. A place to get people to stroke your ego.</p>
+                </div>
+              </li>
+              <li class="tabs">
+                <div class="social-links linkedin-icon">
+                   <a href="https://my.linkedin.com/pub/aysha-anggraini/49/a82/a05/">LinkedIn</a>
+                </div>
+                <div class="paragraph">
+                  <h1>LinkedIn</h1>
+                  <p>I act totally professional on this one. It is what the recruiters see, you see.</p>
+                </div>
+              </li>
+              <li class="tabs">
+                <div class="social-links insta-icon">
+                  <a href="http://instagram.com/renettarenula">Instagram</a>
+                </div>
+                <div class="paragraph">
+                  <h1>Instagram</h1>
+                  <p>Where I post my duckface pictures. Occasionally, I would post pictures of my food and my cats.</p>
+                </div>
+              </li>
+              <li class="tabs">
+                <div class="social-links youtube-icon">
+                  <a href="https://youtube.com">Youtube</a>
+                </div>
+                <div class="paragraph">
+                  <h1>YouTube</h1>
+                  <p>Just kidding! I do not have a YouTube account. I'm not too fond of the camera.</p>
+                </div>
+              </li>
+              <li class="tabs">
+                <div class="social-links tumblr-icon">
+                  <a href="https://renettarenula.tumblr.com/">Tumblr</a>
+                </div>
+                <div class="paragraph">
+                  <h1>Tumblr</h1>
+                  <p>I have a tumblr but I don't really use it. I still prefer WordPress. I'm quite old-fashioned.</p>
+                </div>
+              </li>
+              <li class="tabs">
+                <div class="social-links dribbble-icon">
+                  <a href="http://dribbble.com">Dribbble</a>
+                </div>
+                <div class="paragraph">
+                  <h1>Dribbble</h1>
+                  <p>I do not have a Dribbble account. Would any of you be so kind and send me an invite? </p>
+                </div>
+              </li>
+            </ul>
+          </div> -->
+        <!-- SOCIAL: MEDIA END -->
+        <!-- FOOTER -->
+        
+</div>
+
+
+
+  
+
+{% endblock %}
+
+
