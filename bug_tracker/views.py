@@ -1,101 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, Employee, Bugs
-from .forms import ProductForm, EmployeeForm, BugsForm
-
-# CRUD operations for Products
-def product_list(request):
-    products = Product.objects.all()
-    return render(request, 'product_list.html', {'products': products})
-
-def product_create(request):
-    if request.method == 'POST':
-        form = ProductForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('product_list')
-    else:
-        form = ProductForm()
-    return render(request, 'product_form.html', {'form': form})
-
-def product_update(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    if request.method == 'POST':
-        form = ProductForm(request.POST, instance=product)
-        if form.is_valid():
-            form.save()
-            return redirect('product_list')
-    else:
-        form = ProductForm(instance=product)
-    return render(request, 'product_form.html', {'form': form})
-
-def product_delete(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    product.delete()
-    return redirect('product_list')
-
-
-# CRUD operations for Employees
-def employee_list(request):
-    employees = Employee.objects.all()
-    return render(request, 'employee_list.html', {'employees': employees})
-
-def employee_create(request):
-    if request.method == 'POST':
-        form = EmployeeForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('employee_list')
-    else:
-        form = EmployeeForm()
-    return render(request, 'employee_form.html', {'form': form})
-
-def employee_update(request, pk):
-    employee = get_object_or_404(Employee, pk=pk)
-    if request.method == 'POST':
-        form = EmployeeForm(request.POST, instance=employee)
-        if form.is_valid():
-            form.save()
-            return redirect('employee_list')
-    else:
-        form = EmployeeForm(instance=employee)
-    return render(request, 'employee_form.html', {'form': form})
-
-def employee_delete(request, pk):
-    employee = get_object_or_404(Employee, pk=pk)
-    employee.delete()
-    return redirect('employee_list')
-
-
-# CRUD operations for Bugs
-def bug_list(request):
-    bugs = Bugs.objects.all()
-    return render(request, 'bug_list.html', {'bugs': bugs})
-
-def bug_create(request):
-    if request.method == 'POST':
-        form = BugsForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('bug_list')
-    else:
-        form = BugsForm()
-    return render(request, 'bug_form.html', {'form': form})
-
-def bug_update(request, pk):
-    bug = get_object_or_404(Bugs, pk=pk)
-    if request.method == 'POST':
-        form = BugsForm(request.POST, instance=bug)
-        if form.is_valid():
-            form.save()
-            return redirect('bug_list')
-    else:
-        form = BugsForm(instance=bug)
-    return render(request, 'bug_form.html', {'form': form})
-
-def bug_delete(request, pk):
-    bug = get_object_or_404(Bugs, pk=pk)
-    bug.delete()
-    return redirect('bug_list')
 
 
 
@@ -188,7 +92,7 @@ def bug_create(request):
         reproducible = request.POST.get('reproducible')
         report_by = Employee.objects.get(pk=request.POST.get('report_by'))
         date = request.POST.get('date')
-                functional_area = request.POST.get('functional_area')
+        functional_area = request.POST.get('functional_area')
         assigned_to = Employee.objects.get(pk=request.POST.get('assigned_to'))
         comment = request.POST.get('comment')
         status = request.POST.get('status')
