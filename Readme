@@ -1,0 +1,30 @@
+Bug Tracking Application
+This is a simple bug tracking application built with Django. The application allows users to report and track bugs in a project.
+
+Features
+The application has the following features:
+
+User registration and authentication
+Ability for authenticated users to create projects
+Ability for authenticated users to create, view, edit and delete bugs within a project
+Ability for authenticated users to assign bugs to themselves or other users
+Ability for authenticated users to change the status of bugs
+A dashboard view that displays all the bugs for a user across all projects
+A project view that displays all the bugs for a project
+Getting Started
+To get started with this application, follow these steps:
+
+Clone the repository: git clone https://github.com/ilmaan/bughunt.git
+Create a virtual environment and activate it: python3 -m venv env && source env/bin/activate
+Install the dependencies: pip install -r requirements.txt
+Run database migrations: python manage.py migrate
+Create a superuser: python manage.py createsuperuser
+Start the development server: python manage.py runserver
+Navigate to http://localhost:8000 in your web browser
+Contributing
+If you would like to contribute to this project, you can:
+
+Fork the repository
+Make your changes
+Create a pull request
+Please make sure to write tests for your changes.
