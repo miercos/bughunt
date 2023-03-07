@@ -6,9 +6,6 @@ from .models import *
 
 admin.site.register(Bugs)
 
+admin.site.register(Employee)
 
-admin.site.register(Bugs)
-
-admin.site.register(Bugs)
-
-admin.site.register(Bugs)
+admin.site.register(Product)

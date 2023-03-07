@@ -5,6 +5,7 @@ import datetime
 class Product(models.Model):
     name = models.CharField(max_length=100)
     date = models.DateField( default=datetime.date.today)
+    version = models.IntegerField()
 
 
 class Employee(models.Model):
@@ -23,7 +24,7 @@ class Bugs(models.Model):
     problem = models.TextField()
     suggested_fix = models.TextField()
     reproducible = models.BooleanField(default=False)
-    report_by = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    report_by = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='reported_bugs')
     date = models.DateField( default=datetime.date.today)
     functional_area = models.CharField(max_length=100)
     assigned_to = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='bugs_assigned', null=True, blank=True)
@@ -31,7 +32,7 @@ class Bugs(models.Model):
     status = models.CharField(max_length=20, choices=[('Open', 'Open'), ('Closed', 'Closed')])
     priority = models.CharField(max_length=20, choices=[('High', 'High'), ('Medium', 'Medium'), ('Low', 'Low')])
     resolution = models.CharField(max_length=100)
-    resolved_by = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    resolved_by = models.ForeignKey(Employee, on_delete=models.CASCADE,related_name='resolved_bugs')
     tested_by = models.CharField(max_length=50)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     created_by = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='bugs_created')
