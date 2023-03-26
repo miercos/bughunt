@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Create A Bug
+{% endblock %}
+
+{% block navbar-active %}
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav ml-auto">
+        <div class="hori-selector">
+            <div class="left"></div>
+            <div class="right"></div>
+        </div>
+        <li class="nav-item ">
+            <a class="nav-link " href="{% url 'home' %}"><i class="fas fa-tachometer-alt"></i> Home</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link " href="{% url 'bug_create' %}"><i class="fas fa-tachometer-alt"></i> Create Bug</a>
+        </li>
+        
+    </ul>
+
+</div>
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'app/css/signup.css' %}">    
+
+
+
+{% if message %}
+<script>alert(" Something Went Wrong:  {{ message }}");</script>
+{% endif %}
+{% if e %}
+<script>alert(" Something Went Wrong {{ e }}");</script>
+{% endif %}
+
+<!-- FIRST CONTAINER -->
+<!-- <div class="container-flex "> -->
+
+
+<div class="container-fluid signupbody ">
+    <div class="row justify-content-center">
+        <div class="col-10 text-center p-0 mt-3 mb-2">
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                <h2 id="heading">Bugs</h2>
+                <p>All listed Bugs </p>
+                <br>
+                <br>
+
+
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">bug_id</th>
+                        <th scope="col">Problem</th>
+                        <th scope="col">Reported By</th>
+                        <th scope="col">Assigned to</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">priority</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for bug in bugs %}
+                      <tr>
+                        <td>{{bug.id}}</td>
+                        <td>{{bug.problem}}</td>
+                        <td>{{bug.report_type}}</td>
+                        <td>{{bug.assigned_to.name}}</td>
+                        <td>{{bug.status}}</td>
+                        <td>{{bug.priority}}</td>
+                        
+                      </tr>
+                      {% endfor %}
+                      
+                    </tbody>
+                  </table>
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- </div> -->
+
+{% endblock %}

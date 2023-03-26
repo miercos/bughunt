@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Create A Bug
+{% endblock %}
+
+{% block navbar-active %}
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav ml-auto">
+        <div class="hori-selector">
+            <div class="left"></div>
+            <div class="right"></div>
+        </div>
+        <li class="nav-item ">
+            <a class="nav-link " href="{% url 'home' %}"><i class="fas fa-tachometer-alt"></i> Home</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link " href="{% url 'bug_create' %}"><i class="fas fa-tachometer-alt"></i> Create Bug</a>
+        </li>
+        
+    </ul>
+
+</div>
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'app/css/signup.css' %}">    
+
+
+
+{% if message %}
+<script>alert(" Something Went Wrong:  {{ message }}");</script>
+{% endif %}
+{% if e %}
+<script>alert(" Something Went Wrong {{ e }}");</script>
+{% endif %}
+
+<!-- FIRST CONTAINER -->
+<!-- <div class="container-flex "> -->
+
+
+<div class="container-fluid signupbody ">
+    <div class="row justify-content-center">
+        <div class="col-10 text-center p-0 mt-3 mb-2">
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                <h2 id="heading">Create A Bug here</h2>
+                <p>Fill all form field to go to next step</p>
+                <form id="msform" method="POST" action="/bug/create/" enctype="multipart/form-data" class="signupform1">
+                    {% csrf_token %}
+                    <!-- progressbar -->
+                    <!-- <ul id="progressbar">
+                        <li class="active" id="account"><strong>Basic</strong></li>
+                        <li id="personal"><strong>More Details</strong></li>
+                        <li id="payment"><strong>Personal</strong></li>
+                        <li id="confirm"><strong>Finish</strong></li>
+                    </ul> -->
+                    <!-- <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div> <br> fieldsets -->
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Bug Information:</h2>
+                                </div>
+                                <div class="col-5">
+                                    
+                                </div>
+                            </div>
+                                <label class="fieldlabels">Program: *</label> 
+                                <input type="text" name="program" class="form-control" id="" value="" placeholder="Name of the program"  /> 
+                                <label class="fieldlabels">Report Type: *</label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="report_type" >
+                                  <option>Coding Error</option>
+                                  <option>Design Issue</option>
+                                  <option>Suggestion</option>
+                                  <option>Documentation</option>
+                                  <option>Hardware</option>
+                                </select> 
+                                <label class="fieldlabels">Program Summary: *</label> 
+                                <input type="text" name="summary" class="form-control" value="" placeholder=" Summary"  /> 
+                                <textarea  name="program" class="form-control" value="" placeholder="Program"  ></textarea>
+                                
+                                <label class="fieldlabels">Report By: *</label> 
+                                <select class="form-control" id="exampleFormControlSelect1" name="report_by" >
+                                    {% for emp in employees %}
+                                    
+                                    <option>{{emp.name}}</option>
+                                    
+                                    {% endfor %}
+                                  </select>
+
+
+                                <label class="fieldlabels">Date: *</label> 
+                                <input type="date" id="date" name="birthday">
+
+
+                                <label class="fieldlabels">Suggested Fix: *</label> 
+                            <textarea  name="suggested_fix" class="form-control" value="" placeholder="suggested_fix"  ></textarea>
+
+                            <label class="fieldlabels">Reproducible: *</label> 
+                            <input class="" type="checkbox" value="" id="defaultCheck1">
+                            
+                            <label class="fieldlabels">Functional Area: *</label> 
+                            <input type="text" name="functional_area" class="form-control" value="" placeholder="Functional Area"  />
+
+                            <label class="fieldlabels">Assigned To: *</label> 
+                            <select class="form-control" id="exampleFormControlSelect1" name="assigned_to" >
+                                {% for emp in employees %}
+                                
+                                <option>{{emp.name}}</option>
+                                
+                                {% endfor %}
+                              </select>
+
+                            <label class="fieldlabels">Comment: *</label> 
+                            <textarea  name="comment" class="form-control" value="" placeholder="Comment "  ></textarea>
+
+                            <label class="fieldlabels">Product: *</label> 
+                            <select class="form-control" id="exampleFormControlSelect1" name="product" >
+                                {% for prod in products %}
+                                
+                                <option>{{prod.name}}</option>
+                                
+                                {% endfor %}
+                              </select>
+
+                            <label class="fieldlabels">Resolved By: *</label> 
+                            <select class="form-control" id="exampleFormControlSelect1" name="resolved_by" >
+                                {% for emp in employees %}
+                                
+                                <option>{{emp.name}}</option>
+                                
+                                {% endfor %}
+                              </select>
+
+
+                            <label class="fieldlabels">Status: *</label>
+                                <div class="radioclass" >
+                                <div class="radio">
+                                    <div class="radio__1">
+                                      <input id="radio-1" type="radio"  name="status" value="Open" checked>
+                                      <label for="radio-1"></label>
+                                      <p>Open</p>
+                                    </div>
+                                    <div class="radio__2">
+                                      <input id="radio-2" type="radio" name="status" value="Closed" >
+                                      <label for="radio-2"></label>
+                                      <p>Closed</p>
+                                    </div>
+                                  </div>
+                                  </div>
+                                  <br>
+                                
+                                  <label class="fieldlabels">Priority: *</label>
+                                  <select class="form-control" id="exampleFormControlSelect1" name="priority" >
+                                    <option>High</option>
+                                    <option>Medium</option>
+                                    <option>Low</option>
+                                  </select>
+                                    <br>
+                                  
+                              
+
+                            <label class="fieldlabels">Upload Resume here: *</label>
+                            <input type="file"  name="resume" />
+
+                                
+                                  <br>
+                            <input type="submit" value="Submit" />  
+                        
+                    <!-- <input type="submit" value="SUVR"> -->
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- </div> -->
+
+{% endblock %}

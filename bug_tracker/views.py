@@ -1,12 +1,19 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, Employee, Bugs
+from django.views import View
 
 
+
+class Home(View):
+    def get(self,request):
+        
+        return render(request,'home.html')
 
 
 def product_list(request):
+    print("***^^^^*"*200)
     products = Product.objects.all()
-    return render(request, 'base.html', {'products': 'products'})
+    return render(request, 'home.html')
 
 def product_detail(request, pk):
     product = Product.objects.get(pk=pk)
@@ -81,24 +88,25 @@ def bug_detail(request, pk):
 
 def bug_create(request):
     if request.method == 'POST':
+        print('looooooooooooooooo',request.POST)
         program = request.POST.get('program')
         report_type = request.POST.get('report_type')
         problem_summary = request.POST.get('problem_summary')
         problem = request.POST.get('problem')
         suggested_fix = request.POST.get('suggested_fix')
-        reproducible = request.POST.get('reproducible')
-        report_by = Employee.objects.get(pk=request.POST.get('report_by'))
+        reproducible = request.POST.get('reproducible',1)
+        report_by = Employee.objects.get(name=request.POST.get('report_by'))
         date = request.POST.get('date')
         functional_area = request.POST.get('functional_area')
-        assigned_to = Employee.objects.get(pk=request.POST.get('assigned_to'))
+        assigned_to = Employee.objects.get(name=request.POST.get('assigned_to'))
         comment = request.POST.get('comment')
         status = request.POST.get('status')
         priority = request.POST.get('priority')
         resolution = request.POST.get('resolution')
-        resolved_by = Employee.objects.get(pk=request.POST.get('resolved_by'))
+        resolved_by = Employee.objects.get(name=request.POST.get('resolved_by'))
         tested_by = request.POST.get('tested_by')
-        product = Product.objects.get(pk=request.POST.get('product'))
-        created_by = Employee.objects.get(pk=request.POST.get('created_by'))
+        product = Product.objects.get(name=request.POST.get('product'))
+        # created_by = Employee.objects.get(name=request.POST.get('created_by'))
         
         Bugs.objects.create(
             program=program,
@@ -118,12 +126,14 @@ def bug_create(request):
             resolved_by=resolved_by,
             tested_by=tested_by,
             product=product,
-            created_by=created_by
+            # created_by=created_by
         )
-        return redirect('bug_list')
+        return redirect('bug')
         
     employees = Employee.objects.all()
     products = Product.objects.all()
+    tester = Employee.objects.filter(user_level='Tester')
+    print("TESTER---",tester)
     return render(request, 'bug_create.html', {'employees': employees, 'products': products})
 
 def bug_update(request, pk):
