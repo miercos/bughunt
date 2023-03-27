@@ -17,7 +17,7 @@ class Employee(models.Model):
 
 
 class Bugs(models.Model):
-    bug_id = models.AutoField(primary_key=True, default=100)
+    bug_id = models.AutoField(primary_key=True,  unique=True)
     program = models.CharField(max_length=100)
     report_type = models.CharField(max_length=20, choices=[('Coding Error', 'Coding Error'), ('Design Issue', 'Design Issue'), ('Suggestion', 'Suggestion'), ('Documentation', 'Documentation'), ('Hardware', 'Hardware'), ('Query', 'Query')],null=True)
     problem_summary = models.TextField(null=True)

@@ -48,8 +48,8 @@ Create A Bug
     <div class="row justify-content-center">
         <div class="col-10 text-center p-0 mt-3 mb-2">
             <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
-                <h2 id="heading">Create A Bug here</h2>
-                <p>Fill all form field to go to next step</p>
+                <h2 id="heading">Update Your Bug here</h2>
+                <p>BUG ID : {{bug.bug_id}}</p>
                 <form id="msform" method="POST" action="/bug/create/" enctype="multipart/form-data" class="signupform1">
                     {% csrf_token %}
                     <fieldset>
@@ -63,21 +63,28 @@ Create A Bug
                                 </div>
                             </div>
                                 <label class="fieldlabels">Program: *</label> 
-                                <input type="text" name="program" class="form-control" id="" value="" placeholder="Name of the program" required  /> 
+                                <input type="text" name="program" class="form-control" id="" value="{{bug.program}}" placeholder="Name of the program" required  /> 
                                 <label class="fieldlabels">Report Type: *</label>
                                 <select class="form-control" id="exampleFormControlSelect1" name="report_type"  required>
-                                  <option>Coding Error</option>
-                                  <option>Design Issue</option>
+                                    {% if bug.report_type %}
+                                    <option selected >{{bug.report_type}}</option>
+                                    {% endif %}
+                                    <option>Design Issue</option>
+                                    <option>Coding Error</option>
                                   <option>Suggestion</option>
                                   <option>Documentation</option>
                                   <option>Hardware</option>
                                 </select> 
                                 <label class="fieldlabels">Problem: *</label> 
-                                <input type="text" name="problem" class="form-control" value="" placeholder=" Summary"  required /> 
-                                <textarea  name="problem_summary" class="form-control" value="" placeholder="Program Description"  ></textarea>
+                                <input type="text" name="problem" class="form-control" value="{{bug.problem}}" placeholder=" Summary"  required /> 
+                                <textarea  name="problem_summary" class="form-control" value="problem_summary" placeholder="Program Description"  >{{bug.problem_summary}}</textarea>
                                 
                                 <label class="fieldlabels">Report By: *</label> 
                                 <select class="form-control" id="exampleFormControlSelect1" name="report_by"  required>
+                                    {% if bug.report_by %}
+                                    <option selected >{{bug.report_by.name}}</option>
+                                    {% endif %}
+                                    
                                     {% for emp in employees %}
                                     
                                     <option>{{emp.name}}</option>
@@ -86,34 +93,44 @@ Create A Bug
                                   </select>
 
 
-                                <label class="fieldlabels">Date observed: *</label> 
-                                <input type="date" id="date" name="date" required>
+                                <!-- <label class="fieldlabels">Date observed: *</label> 
+                                <input type="date" id="date" name="date" value="" required> -->
 
 
                                 <label class="fieldlabels">Suggested Fix: *</label> 
-                            <textarea  name="suggested_fix" class="form-control" value="" placeholder="suggested_fix"  ></textarea>
+                            <textarea  name="suggested_fix" class="form-control" value="{{bug.suggested_fix}}" placeholder="suggested_fix"  >{{bug.suggested_fix}}</textarea>
 
                             <label class="fieldlabels">Reproducible: *</label> 
-                            <input class="" type="checkbox" value="" id="defaultCheck1">
-                            
+                            {% if bug.reproducible %}
+                            <input class="" type="checkbox" checked value="" id="defaultCheck1">
+                            {% else %}
+                            <input class="" type="checkbox" value="1" id="defaultCheck1">
+                            {% endif %}
                             <label class="fieldlabels">Functional Area: *</label> 
-                            <input type="text" name="functional_area" class="form-control" value="" placeholder="Functional Area"  />
+                            <input type="text" name="functional_area" class="form-control" value="{{bug.functional_area}}" placeholder="Functional Area"  />
 
                             <label class="fieldlabels">Assigned To: *</label> 
                             <select class="form-control" id="exampleFormControlSelect1" name="assigned_to" required>
                                 {% for emp in employees %}
-                                
+                                {% if bug.assigned_to %}
+                                    <option selected >{{bug.assigned_to.name}}</option>
+                                {% endif %}
+                                    
                                 <option>{{emp.name}}</option>
                                 
                                 {% endfor %}
                               </select>
 
                             <label class="fieldlabels">Comment: *</label> 
-                            <textarea  name="comment" class="form-control" value="" placeholder="Comment "  ></textarea>
+                            <textarea  name="comment" class="form-control" value="" placeholder="Comment "  >{{bug.comment}}</textarea>
 
                             <label class="fieldlabels">Product: *</label> 
                             <select class="form-control" id="exampleFormControlSelect1" name="product" required>
                                 {% for prod in products %}
+                                {% if bug.product_id %}
+                                
+                                    <option selected >{{bug.product.name}}</option>
+                                {% endif %}
                                 
                                 <option>{{prod.name}}</option>
                                 
@@ -123,6 +140,10 @@ Create A Bug
                             <label class="fieldlabels">Resolved By: *</label> 
                             <select class="form-control" id="exampleFormControlSelect1" name="resolved_by" >
                                 {% for emp in employees %}
+                                {% if bug.resolved_by %}
+                                
+                                    <option selected >{{bug.resolved_by.name}}</option>
+                                {% endif %}
                                 
                                 <option>{{emp.name}}</option>
                                 
@@ -134,12 +155,12 @@ Create A Bug
                                 <div class="radioclass" >
                                 <div class="radio">
                                     <div class="radio__1">
-                                      <input id="radio-1" type="radio"  name="status" value="Open" checked>
+                                      <input id="radio-1" type="radio"  name="status" value="Open" {% if bug.status == "Open" %} checked {% endif %}>
                                       <label for="radio-1"></label>
                                       <p>Open</p>
                                     </div>
                                     <div class="radio__2">
-                                      <input id="radio-2" type="radio" name="status" value="Closed" >
+                                      <input id="radio-2" type="radio" name="status" value="Closed" {% if bug.status == "Closed" %} checked {% endif %} >
                                       <label for="radio-2"></label>
                                       <p>Closed</p>
                                     </div>
@@ -149,11 +170,20 @@ Create A Bug
                                 
                                   <label class="fieldlabels">Priority: *</label>
                                   <select class="form-control" id="exampleFormControlSelect1" name="priority" required >
+                                    {% if bug.priority %}
+                                
+                                    <option selected >{{bug.priority}}</option>
+                                    {% endif %}
+                                
                                     <option>High</option>
                                     <option>Medium</option>
                                     <option>Low</option>
                                   </select>
                                     <br>
+
+                                    <label class="fieldlabels">Date Resolved: *</label> 
+                                <input type="date" id="date" name="resolved_by" >
+
                                   
                               
 <!-- 

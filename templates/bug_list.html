@@ -13,11 +13,14 @@ Create A Bug
             <div class="right"></div>
         </div>
         <li class="nav-item ">
-            <a class="nav-link " href="{% url 'home' %}"><i class="fas fa-tachometer-alt"></i> Home</a>
+            <a class="nav-link " href="{% url 'home' %}"> Home</a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link " href="{% url 'bug_create' %}"> Create Bug</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link " href="{% url 'bug_create' %}"><i class="fas fa-tachometer-alt"></i> Create Bug</a>
-        </li>
+            <a class="nav-link " href="{% url 'bug' %}"> ALL Bug</a>
+          </li>
         
     </ul>
 
@@ -45,7 +48,7 @@ Create A Bug
         <div class="col-10 text-center p-0 mt-3 mb-2">
             <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
                 <h2 id="heading">Bugs</h2>
-                <p>All listed Bugs </p>
+                <p>All listed Bugs <br> Click on Bug to edit </p>
                 <br>
                 <br>
 
@@ -56,22 +59,30 @@ Create A Bug
                         <th scope="col">bug_id</th>
                         <th scope="col">Problem</th>
                         <th scope="col">Reported By</th>
+                        <th scope="col">Report Type</th>
                         <th scope="col">Assigned to</th>
                         <th scope="col">Status</th>
                         <th scope="col">priority</th>
+                        <th scope="col">Modify</th>
                       </tr>
                     </thead>
                     <tbody>
                         {% for bug in bugs %}
-                      <tr>
-                        <td>{{bug.id}}</td>
-                        <td>{{bug.problem}}</td>
+                        <tr>
+                            <a href="googlr/cp,">
+                          
+                        <td>{{bug.bug_id}}</td>
+                        <td>{{bug.problem_summary}}</td>
+                        <td>{{bug.report_by.name}}</td>
                         <td>{{bug.report_type}}</td>
                         <td>{{bug.assigned_to.name}}</td>
                         <td>{{bug.status}}</td>
                         <td>{{bug.priority}}</td>
-                        
-                      </tr>
+                        <td><a href="/bug/{{bug.bug_id}}/update/">Edit</a> / <a href="">Delete</a></td>
+
+                    
+                    </a>
+                    </tr>
                       {% endfor %}
                       
                     </tbody>

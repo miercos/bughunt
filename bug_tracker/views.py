@@ -163,6 +163,7 @@ def bug_update(request, pk):
         
     employees = Employee.objects.all()
     products = Product.objects.all()
+    print("BUG---->>>",bug.__dict__)
     return render(request, 'bug_update.html', {'bug': bug, 'employees': employees, 'products': products})
 
 def bug_delete(request, pk):
