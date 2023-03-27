@@ -175,3 +175,7 @@ def bug_delete(request, pk):
     bug.delete()
     return redirect('bug')
 
+
+def database_managment(request):
+    print("KAAAAAS")
+    return render(request,'database_managment.html')

@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+HOME
+{% endblock %}
+
+{% block navbar-active %}
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+ 
+<ul class="navbar-nav ml-auto">
+  <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+  <li class="nav-item ">
+      <a class="nav-link " href="{% url 'home' %}"> Home</a>
+  </li>
+  <li class="nav-item ">
+    <a class="nav-link " href="{% url 'bug_create' %}"> Create Bug</a>
+</li>
+<li class="nav-item  ">
+  <a class="nav-link " href="{% url 'bug' %}"> ALL Bug</a>
+</li>
+
+<li class="nav-item active ">
+    <a class="nav-link " href="{% url 'bug' %}"> Managment</a>
+  </li>
+   
+</ul>
+
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- FIRST CONTAINER -->
+
+        <div class="row6 pt-5" >
+            <div class="container p-5" >
+                <h6 class="row4h6">BugHound Managment Portal </h6>
+                
+                <div class="row">
+                    <div class="col-xs-6 col-md-4">
+                      <a href="{% url 'bug_create' %}">
+                        <div class="btn btn-4 hover-border-2">
+                          <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                            <rect class="shape" height="100%" width="320" />
+                          </svg>
+                             <div class="text">
+                                <h5>ADD Areas</h5>
+                             </div>
+                          </div>
+                          
+                        </a>
+                    </div>
+
+                    <div class="col-xs-6 col-md-4">
+                        <a href="{% url 'bug_create' %}">
+                          <div class="btn btn-4 hover-border-2">
+                            <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                              <rect class="shape" height="100%" width="320" />
+                            </svg>
+                               <div class="text">
+                                  <h5>Edit Areas</h5>
+                               </div>
+                            </div>
+                            
+                          </a>
+                      </div>
+
+                    <div class="col-xs-6 col-md-4">
+                      <a href="{% url 'bug' %}">
+                        <div class="btn btn-4 hover-border-2">
+                          <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                            <rect class="shape" height="100%" width="320" />
+                          </svg>
+                          <div class="text">
+                            <h5>Add Employees</h5>
+                          </div>
+                        </div>
+                        
+                      </a>
+                      </div>
+                      
+                      <div class="col-xs-6 col-md-4">
+                        <a href="">
+                          <div class="btn btn-4 hover-border-2">
+                            <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                              <rect class="shape" height="100%" width="320" />
+                            </svg>
+                            <div class="text">
+                              <h5>Edit Employees</h5>
+                            </div>
+                          </div>
+                          
+                        </a>
+                        </div>  
+                        
+                        <div class="col-xs-6 col-md-4">
+                            <a href="{% url 'bug_create' %}">
+                              <div class="btn btn-4 hover-border-2">
+                                <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                                  <rect class="shape" height="100%" width="320" />
+                                </svg>
+                                   <div class="text">
+                                      <h5>Add Program</h5>
+                                   </div>
+                                </div>
+                                
+                              </a>
+                          </div>
+                          <div class="col-xs-6 col-md-4">
+                            <a href="{% url 'bug_create' %}">
+                              <div class="btn btn-4 hover-border-2">
+                                <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                                  <rect class="shape" height="100%" width="320" />
+                                </svg>
+                                   <div class="text">
+                                      <h5>Edit Program</h5>
+                                   </div>
+                                </div>
+                                
+                              </a>
+                          </div>
+                        
+                </div>
+            </div>
+        </div>
+       
+
+
+
+  
+
+{% endblock %}
+
+

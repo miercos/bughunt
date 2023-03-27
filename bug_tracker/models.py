@@ -7,6 +7,10 @@ class Product(models.Model):
     date = models.DateField( default=datetime.date.today)
     version = models.IntegerField()
 
+class Area(models.Model):
+    emp_id = models.AutoField(primary_key=True, )
+    area_name = models.CharField(max_length=100, null=True)
+    
 
 class Employee(models.Model):
     emp_id = models.AutoField(primary_key=True, )
@@ -33,6 +37,7 @@ class Bugs(models.Model):
     priority = models.CharField(max_length=20, choices=[('High', 'High'), ('Medium', 'Medium'), ('Low', 'Low')],null=True)
     resolution = models.CharField(max_length=100,null=True)
     resolved_by = models.ForeignKey(Employee, on_delete=models.CASCADE,related_name='resolved_bugs', null=True )
+    area = models.ForeignKey(Area, on_delete=models.CASCADE,related_name='area', null=True )
     tested_by = models.CharField(max_length=50,null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE,null=True)
     created_by = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='bugs_created',null=True)

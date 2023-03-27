@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('',views.Home.as_view(),name="home"),
+    path('database_managment',views.database_managment,name="database_managment"),
     path('product_list', views.product_list, name='product_list'),
     path('product/<int:pk>/', views.product_detail, name='product_detail'),
     path('product/create/', views.product_create, name='product_create'),
@@ -20,6 +21,7 @@ urlpatterns = [
     path('bug/create/', views.bug_create, name='bug_create'),
     path('bug/<int:pk>/update/', views.bug_update, name='bug_update'),
     path('bug/<int:pk>/delete/', views.bug_delete, name='bug_delete'),
+    
 
     
 ]
