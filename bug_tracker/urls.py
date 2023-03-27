@@ -21,6 +21,10 @@ urlpatterns = [
     path('bug/create/', views.bug_create, name='bug_create'),
     path('bug/<int:pk>/update/', views.bug_update, name='bug_update'),
     path('bug/<int:pk>/delete/', views.bug_delete, name='bug_delete'),
+
+    path('add_area/', views.add_area, name='add_area'),
+    path('area/', views.area, name='area_list'),
+
     
 
     

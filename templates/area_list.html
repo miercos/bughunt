@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Create A Bug
+{% endblock %}
+
+{% block navbar-active %}
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav ml-auto">
+        <div class="hori-selector">
+            <div class="left"></div>
+            <div class="right"></div>
+        </div>
+        <li class="nav-item ">
+            <a class="nav-link " href="{% url 'home' %}"> Home</a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link " href="{% url 'bug_create' %}"> Create Bug</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link " href="{% url 'bug' %}"> ALL Areas</a>
+          </li>
+        
+    </ul>
+
+</div>
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'app/css/signup.css' %}">    
+
+
+
+{% if message %}
+<script>alert(" Something Went Wrong:  {{ message }}");</script>
+{% endif %}
+{% if e %}
+<script>alert(" Something Went Wrong {{ e }}");</script>
+{% endif %}
+
+<!-- FIRST CONTAINER -->
+<!-- <div class="container-flex "> -->
+
+
+<div class="container signupbody ">
+    <div class="row justify-content-center">
+        <div class="col-6 text-center p-0 mt-3 mb-2">
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                <h2 id="heading">Areas</h2>
+                <p>All listed Areas <br> Click on Area to edit </p>
+                <br>
+                <br>
+
+
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Area Id</th>
+                        <th scope="col">Area Name</th>
+                        <th scope="col">Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for area in areas %}
+                        <tr>
+                        <form action="/area/"  method="POST" >
+                        {% csrf_token %}
+
+                        <td><input type="text" value="{{area.area_id}}" name="area_id" ></td>
+                        <td><input type="text" value="{{area.area_name}}" name="area_name" ></td>
+                        <td><input type="submit" class="btn-primary"  value="EDIT"></td>
+                    </form>
+                    
+                    </a>
+                    </tr>
+                      {% endfor %}
+                      
+                    </tbody>
+                  </table>
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- </div> -->
+
+{% endblock %}

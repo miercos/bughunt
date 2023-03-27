@@ -37,7 +37,7 @@ HOME
                 
                 <div class="row">
                     <div class="col-xs-6 col-md-4">
-                      <a href="{% url 'bug_create' %}">
+                      <a href=""  data-toggle="modal" data-target="#exampleModal1" >
                         <div class="btn btn-4 hover-border-2">
                           <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
                             <rect class="shape" height="100%" width="320" />
@@ -51,7 +51,7 @@ HOME
                     </div>
 
                     <div class="col-xs-6 col-md-4">
-                        <a href="{% url 'bug_create' %}">
+                        <a href="{% url 'area_list' %}" >
                           <div class="btn btn-4 hover-border-2">
                             <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
                               <rect class="shape" height="100%" width="320" />
@@ -93,7 +93,7 @@ HOME
                         </div>  
                         
                         <div class="col-xs-6 col-md-4">
-                            <a href="{% url 'bug_create' %}">
+                            <a href="" data-toggle="modal" data-target="#exampleModa2" >
                               <div class="btn btn-4 hover-border-2">
                                 <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
                                   <rect class="shape" height="100%" width="320" />
@@ -123,7 +123,37 @@ HOME
             </div>
         </div>
        
+        <!-- Button trigger modal -->
 
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Area</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form id="msform" method="POST" action="/add_area/" enctype="multipart/form-data" class="signupform1">
+                {% csrf_token %}
+                <fieldset>
+                    <div class="form-card">
+                        
+                            <label class="fieldlabels">Area: *</label> 
+                            <input type="text" name="area_name" class="form-control" id="" value="" placeholder="Name of the Area" required  /> 
+                            <br>
+                            <input class="btn-primary " type="submit" value="Submit" />  
+                             
+                </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
 
 
   

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product, Employee, Bugs
+from .models import *
 from django.views import View
 
 
@@ -179,3 +179,32 @@ def bug_delete(request, pk):
 def database_managment(request):
     print("KAAAAAS")
     return render(request,'database_managment.html')
+
+def add_area(request):
+    if request.method == 'POST':
+        name = request.POST.get('area_name')
+        Area.objects.create(area_name=name)
+        return redirect('area_list')
+    areas = Area.objects.all()
+    print("AREAAAAA",areas)
+    return render(request, 'area_list.html', {'areas':areas})
+    # return render(request, 'area_list.html')
+
+
+def area(request):
+    if request.method == 'POST':
+        # try:
+        print("request.POST.get('area_id')",request.POST.get('area_id'),request.POST.get('area_name'))
+        area_id = request.POST.get('area_id')
+        obj = Area.objects.get(area_id=area_id)
+    
+        print('looooooooooooooooo',obj)
+        obj.area_name = request.POST.get('area_name')
+        print('AREA SAVED')
+        obj.save()
+        return redirect('area_list')
+        # except Exception as e:
+        #     print("ERROR",e)
+    areas = Area.objects.all()
+    # print("AREAAAAA-----",areas)
+    return render(request, 'area_list.html', {'areas':areas})

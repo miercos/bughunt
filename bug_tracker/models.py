@@ -8,7 +8,7 @@ class Product(models.Model):
     version = models.IntegerField()
 
 class Area(models.Model):
-    emp_id = models.AutoField(primary_key=True, )
+    area_id = models.AutoField(primary_key=True, )
     area_name = models.CharField(max_length=100, null=True)
     
 
