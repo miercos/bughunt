@@ -13,11 +13,14 @@ class Area(models.Model):
     
 
 class Employee(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     emp_id = models.AutoField(primary_key=True, )
     name = models.CharField(max_length=100)
     email = models.EmailField()
     user_level = models.CharField(max_length=20, choices=[('Author', 'Author'), ('Developer', 'Developer'), ('Tester', 'Tester'), ('Admin', 'Admin')  ])
 
+    # def __str__(self):
+    #     return self.user.username
 
 
 class Bugs(models.Model):
