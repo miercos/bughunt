@@ -50,7 +50,7 @@ Create A Bug
             <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
                 <h2 id="heading">Update Your Bug here</h2>
                 <p>BUG ID : {{bug.bug_id}}</p>
-                <form id="msform" method="POST" action="/bug/create/" enctype="multipart/form-data" class="signupform1">
+                <form id="msform" method="POST" action="/bug/{{bug.bug_id}}/update/" enctype="multipart/form-data" class="signupform1">
                     {% csrf_token %}
                     <fieldset>
                         <div class="form-card">
@@ -182,7 +182,7 @@ Create A Bug
                                     <br>
 
                                     <label class="fieldlabels">Date Resolved: *</label> 
-                                <input type="date" id="date" name="resolved_by" >
+                                <input type="date" id="date" name="" >
 
                                   
                               

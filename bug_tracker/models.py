@@ -23,7 +23,7 @@ class Bugs(models.Model):
     problem_summary = models.TextField(null=True)
     problem = models.TextField(null=True)
     suggested_fix = models.TextField(null=True)
-    reproducible = models.BooleanField(default=False)
+    reproducible = models.BooleanField(default=False,null=True)
     report_by = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='reported_bugs',null=True)
     date = models.DateField( default=datetime.date.today,null=True)
     functional_area = models.CharField(max_length=100,null=True)

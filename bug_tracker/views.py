@@ -139,28 +139,32 @@ def bug_create(request):
 def bug_update(request, pk):
     bug = Bugs.objects.get(pk=pk)
     if request.method == 'POST':
-        bug.program = request.POST.get('program')
-        bug.report_type = request.POST.get('report_type')
-        bug.problem_summary = request.POST.get('problem_summary')
-        bug.problem = request.POST.get('problem')
-        bug.suggested_fix = request.POST.get('suggested_fix')
-        bug.reproducible = request.POST.get('reproducible')
-        bug.report_by = Employee.objects.get(pk=request.POST.get('report_by'))
-        bug.date = request.POST.get('date')
-        bug.functional_area = request.POST.get('functional_area')
-        bug.assigned_to = Employee.objects.get(pk=request.POST.get('assigned_to'))
-        bug.comment = request.POST.get('comment')
-        bug.status = request.POST.get('status')
-        bug.priority = request.POST.get('priority')
-        bug.resolution = request.POST.get('resolution')
-        bug.resolved_by = Employee.objects.get(pk=request.POST.get('resolved_by'))
-        bug.tested_by = request.POST.get('tested_by')
-        bug.product = Product.objects.get(pk=request.POST.get('product'))
-        bug.created_by = Employee.objects.get(pk=request.POST.get('created_by'))
-        
-        bug.save()
-        return redirect('bug_detail', pk=pk)
-        
+        try:
+            print('looooooooooooooooo',request.POST)
+            bug.program = request.POST.get('program')
+            bug.report_type = request.POST.get('report_type')
+            bug.problem_summary = request.POST.get('problem_summary')
+            bug.problem = request.POST.get('problem')
+            bug.suggested_fix = request.POST.get('suggested_fix')
+            bug.reproducible = request.POST.get('reproducible')
+            bug.report_by = Employee.objects.get(name=request.POST.get('report_by'))
+            bug.date = request.POST.get('date')
+            bug.functional_area = request.POST.get('functional_area')
+            bug.assigned_to = Employee.objects.get(name=request.POST.get('assigned_to'))
+            bug.comment = request.POST.get('comment')
+            bug.status = request.POST.get('status')
+            bug.priority = request.POST.get('priority')
+            bug.resolution = request.POST.get('resolution')
+            bug.resolved_by = Employee.objects.get(name=request.POST.get('resolved_by'))
+            bug.tested_by = request.POST.get('tested_by')
+            bug.product = Product.objects.get(name=request.POST.get('product'))
+            # bug.created_by = Employee.objects.get(name=request.POST.get('created_by'))
+            
+            bug.save()
+            return redirect('bug')
+        except Exception as e:
+            print("ERROR"*300,e)
+
     employees = Employee.objects.all()
     products = Product.objects.all()
     print("BUG---->>>",bug.__dict__)
@@ -169,5 +173,5 @@ def bug_update(request, pk):
 def bug_delete(request, pk):
     bug = Bugs.objects.get(pk=pk)
     bug.delete()
-    return redirect('bug_list')
+    return redirect('bug')
 
