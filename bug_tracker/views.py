@@ -5,11 +5,50 @@ from django.contrib.auth import authenticate, load_backend, login, logout
 
 
 
+class Admin_login(View):
+    def post(self,request):
+        if request.method == 'POST':
+            username = request.POST['aname']
+            password = request.POST['psswd']   
+            user = authenticate(username=username, password=password) 
+            print("AAYA1")
+            try:
+                # if user.is_staff:
+                    login(request, user)
+                    return redirect('home')    # Redirect to a success page.   
+                # else:
+                #     # message = messages.error(request, 'Sorry you are not an admin')
+                #     message= "Sorry you are not authoirized to login as admin Stay In your Limits !!"
+                #     return render(request, 'admin_login.html',{'message':message})
+  
+            except Exception as e: 
+                # message = messages.error(request, 'Invalid Username or Password')
+                message = "Invalid Username or Password"
+                return render(request, 'admin_login.html',{'message':message})
+                       
+    def get(self,request):
+        return render(request,'admin_login.html')
+
+
+class Logout(View): 
+    def get(self,request):
+        logout(request)
+        return redirect('/')
+        
+
+
 
 class Home(View):
+    
     def get(self,request):
-        
-        return render(request,'home.html')
+        if request.user.is_authenticated:   
+            user = request.user
+            print("HAHAHAHAHAHHAAH",user) 
+            usr = Employee.objects.get(email=user)
+            print("USDDDD",usr)
+            return render(request,'home.html',{'user':user,'emp':usr})
+        else:
+            return render(request,'admin_login.html')
 
 
 def product_list(request):
@@ -90,7 +129,7 @@ def employee_create(request):
         user_level = request.POST.get('user_level')
         password = request.POST.get('password')
         user = User.objects.create_user(first_name=name,username=email,password=password,email=email)
-        Employee.objects.create(name=name, email=email, user_level=user_level)
+        Employee.objects.create(name=name, email=email, user_level=user_level,password=password)
         user = authenticate(username=email, password=password)
         login(request, user)
                         

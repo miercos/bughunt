@@ -15,18 +15,7 @@ Admin
         <li class="nav-item ">
             <a class="nav-link " href="{% url 'home' %}"> Home</a>
         </li>
-        <li class="nav-item ">
-            <a class="nav-link" href="{% url 'About-Us' %}"><i class="far fa-address-book"></i> About</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'services' %}"><i class="far fa-clone"></i> Services</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'contact-us' %}"><i class="far fa-calendar-alt"></i> Contact</a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="{% url 'Portal' %}"><i class="far fa-chart-bar"></i> Portal</a>
-        </li>
+        
     </ul>
     
 </div>
@@ -48,6 +37,7 @@ Admin
     <div class="wrapper">
         <div class="container">
             <h1>Welcome, Admin</h1>
+            <p>For testing login with root and password 1234</p>
             
             <form class="form" action="admin-login" method="post" name="adminsignin">
                 {% csrf_token %}

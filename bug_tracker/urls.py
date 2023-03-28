@@ -3,6 +3,11 @@ from . import views
 
 urlpatterns = [
     path('',views.Home.as_view(),name="home"),
+    path('admin-login',views.Admin_login.as_view(),name="admin-login"),
+    path('logout',views.Logout.as_view(),name="Logout"),
+
+
+
     path('database_managment',views.database_managment,name="database_managment"),
     path('product_list/', views.product_list, name='product_list'),
     path('product/', views.product, name='product'),
