@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-Create A Bug
+Create A Program
 {% endblock %}
 
 {% block navbar-active %}
@@ -15,11 +15,11 @@ Create A Bug
         <li class="nav-item ">
             <a class="nav-link " href="{% url 'home' %}"> Home</a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item ">
             <a class="nav-link " href="{% url 'bug_create' %}"> Create Bug</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link " href="{% url 'bug' %}"> Add Area</a>
+            <a class="nav-link " href="{% url 'bug' %}"> Add Program</a>
         </li>
         
         
@@ -48,15 +48,22 @@ Create A Bug
     <div class="row justify-content-center">
         <div class="col-10 text-center p-0 mt-3 mb-2">
             <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
-                <h2 id="heading">Add area here</h2>
-                <form id="msform" method="POST" action="/add_area/" enctype="multipart/form-data" class="signupform1">
+                <h2 id="heading">Add Program here</h2>
+                <form id="msform" method="POST" action="/product/" enctype="multipart/form-data" class="signupform1">
                     {% csrf_token %}
                     <fieldset>
                         <div class="form-card">
                             
-                                <label class="fieldlabels">Area: *</label> 
-                                <input type="text" name="program" class="form-control" id="" value="" placeholder="Name of the Area" required  /> 
+                                <label class="fieldlabels">Program Name: *</label> 
+                                <input type="text" name="name" class="form-control" id="" value="" placeholder="Name of the Program" required  /> 
                                 <br>
+                                <label class="fieldlabels">Date: *</label> 
+                                <input type="date" name="date" class="form-control" id="" value=""   /> 
+                                <br>
+                                <label class="fieldlabels">Version of the program: *</label> 
+                                <input type="text" name="version" class="form-control" id="" value="" placeholder="enter version no here"  /> 
+                                
+
                                 <input type="submit" value="Submit" />  
                                  
                     </form>

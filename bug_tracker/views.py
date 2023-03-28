@@ -13,13 +13,29 @@ class Home(View):
 
 
 def product_list(request):
-    print("***^^^^*"*200)
-    products = Product.objects.all()
-    return render(request, 'home.html')
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        product = Product.objects.get(id=id)
 
-def product_detail(request, pk):
-    product = Product.objects.get(pk=pk)
-    return render(request, 'product_detail.html', {'product': product})
+        product.name = request.POST.get('name')
+        # product.date = request.POST.get('date')
+        product.version = request.POST.get('version')
+        product.save()
+        return redirect('product_list')
+    products = Product.objects.all()
+    return render(request, 'product_list.html',{'products': products})
+
+def product(request):
+    if request.method == 'POST':
+        
+        name = request.POST.get('name')
+        date = request.POST.get('date')
+        version = request.POST.get('version')
+        Product.objects.create(name=name, date=date, version=version)
+        return redirect('product_list')
+    # product = Product.objects.get(pk=pk)
+    return render(request, 'product_add.html')
+    # return render(request, 'product_detail.html', {'product': product})
 
 def product_create(request):
     if request.method == 'POST':
@@ -47,6 +63,18 @@ def product_delete(request, pk):
 
 
 def employee_list(request):
+    if request.method == 'POST':
+        # try:
+        print("request.POST.get('area_id')",request.POST.get('emp_id'),request.POST.get('name'))
+        emp_id = request.POST.get('emp_id')
+        obj = Employee.objects.get(emp_id=emp_id)
+    
+        print('looooooooooooooooo',obj)
+        obj.user_level = request.POST.get('user_level')
+        print('USER LEVEL UPDATED')
+        obj.save()
+        return redirect('employee_list')
+    
     employees = Employee.objects.all()
     return render(request, 'employee_list.html', {'employees': employees})
 
