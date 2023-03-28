@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from django.views import View
+from django.contrib.auth import authenticate, load_backend, login, logout
+
 
 
 
@@ -54,10 +56,18 @@ def employee_detail(request, pk):
 
 def employee_create(request):
     if request.method == 'POST':
+        print("LAAAALALALALA")
         name = request.POST.get('name')
         email = request.POST.get('email')
         user_level = request.POST.get('user_level')
+        password = request.POST.get('password')
+        user = User.objects.create_user(first_name=name,username=email,password=password,email=email)
         Employee.objects.create(name=name, email=email, user_level=user_level)
+        user = authenticate(username=email, password=password)
+        login(request, user)
+                        
+        print("LAAAALALALALA")
+
         return redirect('employee_list')
     return render(request, 'employee_create.html')
 
