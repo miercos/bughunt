@@ -68,7 +68,7 @@ Create A Bug
                     <tbody>
                         {% for emp in employees %}
                         <tr>
-                        <form action="/employee/"  method="POST" >
+                        <form action="/employee/update/"  method="POST" >
                         {% csrf_token %}
                             
 
@@ -85,7 +85,7 @@ Create A Bug
                             <option>Admin</option>
                             
                           </select></td>
-                          <td><input type="text" value="{{emp.level}}"  name="email"  ></td>
+                          <td><input type="text" value="{{emp.level}}"  name="level"  ></td>
                         
                           <td><input type="submit" class="btn-primary p-2"  value="EDIT"></td>
 
@@ -96,19 +96,6 @@ Create A Bug
                     </tr>
                       {% endfor %}
 
-                      {% for area in areas %}
-                        <tr>
-                        <form action="/area/"  method="POST" >
-                        {% csrf_token %}
-
-                        <td><input type="text" value="{{area.area_id}}" name="area_id" ></td>
-                        <td><input type="text" value="{{area.area_name}}" name="area_name" ></td>
-                        <td><input type="submit" class="btn-primary"  value="EDIT"></td>
-                    </form>
-                    
-                    </a>
-                    </tr>
-                      {% endfor %}
                       
                       
                     </tbody>

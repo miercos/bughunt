@@ -5,11 +5,15 @@ import datetime
 class Product(models.Model):
     name = models.CharField(max_length=100)
     date = models.DateField( default=datetime.date.today)
-    version = models.CharField(max_length=100)
+    version = models.CharField(max_length=100, default=0)
+    release = models.CharField(max_length=100,default=0)
+    
 
 class Area(models.Model):
     area_id = models.AutoField(primary_key=True, )
     area_name = models.CharField(max_length=100, null=True)
+    areas = models.CharField(max_length=300, null=True,default='')
+    
     
 
 class Employee(models.Model):

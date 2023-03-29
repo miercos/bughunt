@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-10-g#q)+($!%=$@h)qtazz_m)(8e$7f9^p&@t^^n%+^63c(j!u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://bughound.pythonanywhere.com/','bughound.pythonanywhere.com','localhost:8001','localhost:8000']
 # ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
 
 

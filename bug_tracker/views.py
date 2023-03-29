@@ -59,6 +59,7 @@ def product_list(request):
         product.name = request.POST.get('name')
         # product.date = request.POST.get('date')
         product.version = request.POST.get('version')
+        product.version = request.POST.get('release')
         product.save()
         return redirect('product_list')
     products = Product.objects.all()
@@ -70,7 +71,8 @@ def product(request):
         name = request.POST.get('name')
         date = request.POST.get('date')
         version = request.POST.get('version')
-        Product.objects.create(name=name, date=date, version=version)
+        release = request.POST.get('release')
+        Product.objects.create(name=name, date=date, version=version, release=release)
         return redirect('product_list')
     # product = Product.objects.get(pk=pk)
     return render(request, 'product_add.html')
@@ -139,15 +141,18 @@ def employee_create(request):
         return redirect('employee_list')
     return render(request, 'employee_create.html')
 
-def employee_update(request, pk):
-    employee = Employee.objects.get(pk=pk)
+def employee_update(request):
+    
     if request.method == 'POST':
+        emp_id = request.POST.get('emp_id')
+        employee = Employee.objects.get(emp_id=emp_id)
+        print("^^^^^^^",employee)
         employee.name = request.POST.get('name')
         employee.email = request.POST.get('email')
         employee.user_level = request.POST.get('user_level')
         employee.level = request.POST.get('level')
         employee.save()
-        return redirect('employee_detail', pk=pk)
+        return redirect('employee_list')
     return render(request, 'employee_update.html', {'employee': employee})
 
 def employee_delete(request, pk):
@@ -262,7 +267,8 @@ def database_managment(request):
 def add_area(request):
     if request.method == 'POST':
         name = request.POST.get('area_name')
-        Area.objects.create(area_name=name)
+        areas = request.POST.get('area')
+        Area.objects.create(area_name=name,areas=areas)
         return redirect('area_list')
     areas = Area.objects.all()
     print("AREAAAAA",areas)
@@ -279,6 +285,7 @@ def area(request):
     
         print('looooooooooooooooo',obj)
         obj.area_name = request.POST.get('area_name')
+        obj.areas = request.POST.get('area')
         print('AREA SAVED')
         obj.save()
         return redirect('area_list')
