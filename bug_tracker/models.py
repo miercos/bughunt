@@ -19,6 +19,7 @@ class Employee(models.Model):
     email = models.EmailField()
     user_level = models.CharField(max_length=20, choices=[('Author', 'Author'), ('Developer', 'Developer'), ('Tester', 'Tester'), ('Admin', 'Admin')  ])
     password = models.CharField(max_length=100,default='root')
+    level = models.CharField(max_length=100,default='0',null=True)
 
     # def __str__(self):
     #     return self.user.username

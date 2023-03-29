@@ -44,7 +44,7 @@ class Home(View):
         if request.user.is_authenticated:   
             user = request.user
             print("HAHAHAHAHAHHAAH",user) 
-            usr = Employee.objects.get(email=user)
+            usr = Employee.objects.filter(email=user).first()
             print("USDDDD",usr)
             return render(request,'home.html',{'user':user,'emp':usr})
         else:
@@ -128,8 +128,9 @@ def employee_create(request):
         email = request.POST.get('email')
         user_level = request.POST.get('user_level')
         password = request.POST.get('password')
+        level = request.POST.get('level')
         user = User.objects.create_user(first_name=name,username=email,password=password,email=email)
-        Employee.objects.create(name=name, email=email, user_level=user_level,password=password)
+        Employee.objects.create(name=name, email=email, user_level=user_level,password=password,level=level)
         user = authenticate(username=email, password=password)
         login(request, user)
                         
@@ -144,6 +145,7 @@ def employee_update(request, pk):
         employee.name = request.POST.get('name')
         employee.email = request.POST.get('email')
         employee.user_level = request.POST.get('user_level')
+        employee.level = request.POST.get('level')
         employee.save()
         return redirect('employee_detail', pk=pk)
     return render(request, 'employee_update.html', {'employee': employee})
