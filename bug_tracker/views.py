@@ -53,15 +53,19 @@ class Home(View):
 
 def product_list(request):
     if request.method == 'POST':
-        id = request.POST.get('id')
-        product = Product.objects.get(id=id)
+        try:
+            id = request.POST.get('id')
+            product = Product.objects.get(id=id)
 
-        product.name = request.POST.get('name')
-        # product.date = request.POST.get('date')
-        product.version = request.POST.get('version')
-        product.version = request.POST.get('release')
-        product.save()
-        return redirect('product_list')
+            product.name = request.POST.get('name')
+            # product.date = request.POST.get('date')
+            product.version = request.POST.get('version')
+            product.release = request.POST.get('release')
+            product.save()
+            print("KEEEMA Paratha")
+            return redirect('product_list')
+        except Exception as e:
+            print("KAAABBABB",e)
     products = Product.objects.all()
     return render(request, 'product_list.html',{'products': products})
 
