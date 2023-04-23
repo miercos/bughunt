@@ -263,6 +263,45 @@ def bug_delete(request, pk):
     bug.delete()
     return redirect('bug')
 
+def bug_search(request):
+    if request.method == 'POST':
+        program = request.POST.get('program')
+        report_type = request.POST.get('report_type')
+        severity = request.POST.get('severity')
+        fun_area = request.POST.get('fun_area')
+        assigned_to = request.POST.get('assigned_to')
+        reported_by = request.POST.get('reported_by')
+        status = request.POST.get('status')
+        priority = request.POST.get('priority')
+        resolution = request.POST.get('resolution')
+
+        bugs = Bugs.objects.all()
+        if program != 'All':
+            bugs = Bugs.objects.filter(program = program)
+        if report_type != 'All':
+            bugs = Bugs.objects.filter(report_type = report_type)
+        if severity != 'All':
+            bugs = Bugs.objects.filter(severity=severity)
+        if fun_area != 'All':
+            bugs = Bugs.objects.filter(fun_area = fun_area)
+        if assigned_to != 'All':
+            bugs = Bugs.objects.filter(assigned_to = assigned_to)
+        if reported_by != 'All':
+            bugs = Bugs.objects.filter(reported_by = reported_by)
+        if status != 'All':
+            bugs = Bugs.objects.filter(status=status)
+        if priority != 'All':
+            bugs = Bugs.objects.filter(priority=priority)
+        if resolution != 'All':
+            bugs = Bugs.objects.filter(resolution=resolution)
+
+        return render(request, 'bug_list.html', {'bugs': bugs})
+
+    employees = Employee.objects.all()
+    programs = Product.objects.all()
+    areas = Area.objects.all()
+    return render(request, 'bug_search.html', {'employees': employees, 'programs': programs, 'areas': areas})
+
 
 def database_managment(request):
     print("KAAAAAS")
