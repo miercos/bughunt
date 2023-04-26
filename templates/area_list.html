@@ -16,10 +16,10 @@ Create A Bug
             <a class="nav-link " href="{% url 'home' %}"> Home</a>
         </li>
         <li class="nav-item ">
-            <a class="nav-link " href="{% url 'bug_create' %}"> Create Bug</a>
+            <a class="nav-link " href="">Add Area</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link " href="{% url 'bug' %}"> ALL Areas</a>
+            <a class="nav-link " href="">Areas</a>
           </li>
         
     </ul>
@@ -59,7 +59,7 @@ Create A Bug
                         <th scope="col">Area Id</th>
                         <th scope="col">Area Name</th>
                         <th scope="col">Areas</th>
-                        <th scope="col">Edit</th>
+                        <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,7 +71,7 @@ Create A Bug
                         <td><input type="text" value="{{area.area_id}}" name="area_id" ></td>
                         <td><input type="text" value="{{area.area_name}}" name="area_name" ></td>
                         <td><input type="text" value="{{area.areas}}" name="area" ></td>
-                        <td><input type="submit" class="btn-primary"  value="EDIT"></td>
+                        <td><input type="submit" class="btn-primary"  value="SAVE"></td>
                     </form>
                     
                     </a>

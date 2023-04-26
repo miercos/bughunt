@@ -137,8 +137,8 @@ def employee_create(request):
         level = request.POST.get('level')
         user = User.objects.create_user(first_name=name,username=email,password=password,email=email)
         Employee.objects.create(name=name, email=email, user_level=user_level,password=password,level=level)
-        user = authenticate(username=email, password=password)
-        login(request, user)
+        #user = authenticate(username=email, password=password)
+        #login(request, user)
                         
         print("LAAAALALALALA")
 
@@ -275,7 +275,6 @@ def bug_search(request):
         status = request.POST.get('status')
         priority = request.POST.get('priority')
         resolution = request.POST.get('resolution')
-        print(assigned_to)
 
         bugs = Bugs.objects.all()
         if program != 'All':

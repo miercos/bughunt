@@ -13,13 +13,13 @@ Create A Bug
             <div class="right"></div>
         </div>
         <li class="nav-item ">
-            <a class="nav-link " href="{% url 'home' %}"> Home</a>
+            <a class="nav-link " href="{% url 'home' %}">Home</a>
         </li>
         <li class="nav-item ">
-            <a class="nav-link " href="{% url 'bug_create' %}"> Create Bug</a>
+            <a class="nav-link " href="{% url 'product' %}">Add Program</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link " href=""> ALL Programs</a>
+            <a class="nav-link " href="">Programs</a>
           </li>
         
     </ul>
@@ -60,7 +60,7 @@ Create A Bug
                         <th scope="col">Name</th>
                         <th scope="col">Version</th>
                         <th scope="col">Release</th>
-                        <th scope="col">Edit</th>
+                        <th scope="col"></th>
 
                         </tr>
                     </thead>
@@ -75,7 +75,7 @@ Create A Bug
                         <td><input type="text"  value="{{prod.name}}" name="name" ></td>
                         <td><input type="text"  value="{{prod.version}}" name="version" ></td>
                         <td><input type="text"  value="{{prod.release}}" name="release" ></td>
-                        <td><input type="submit" class="btn-primary"  value="EDIT"></td>
+                        <td><input type="submit" class="btn-primary"  value="SAVE"></td>
                     </form>
                     
                     </a>

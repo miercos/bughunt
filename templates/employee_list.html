@@ -16,10 +16,10 @@ Create A Bug
             <a class="nav-link " href="{% url 'home' %}"> Home</a>
         </li>
         <li class="nav-item ">
-            <a class="nav-link " href="{% url 'bug_create' %}"> Create Bug</a>
+            <a class="nav-link " href="{% url 'employee_create' %}">Add Employee</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link " href="{% url 'bug' %}"> ALL Areas</a>
+            <a class="nav-link " href="{% url 'employee_list' %}"> Employees</a>
           </li>
         
     </ul>
@@ -61,7 +61,7 @@ Create A Bug
                         <th scope="col">Email</th>
                         <th scope="col">User Level</th>
                         <th scope="col">Level</th>
-                        <th scope="col">Edit</th>
+                        <th scope="col"></th>
 
                         </tr>
                     </thead>
@@ -87,7 +87,7 @@ Create A Bug
                           </select></td>
                           <td><input type="text" value="{{emp.level}}"  name="level"  ></td>
                         
-                          <td><input type="submit" class="btn-primary p-2"  value="EDIT"></td>
+                          <td><input type="submit" class="btn-primary p-2"  value="SAVE"></td>
 
                         
                         </form>
