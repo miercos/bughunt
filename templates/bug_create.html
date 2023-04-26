@@ -18,8 +18,8 @@ Create A Bug
         <li class="nav-item active">
             <a class="nav-link " href="{% url 'bug_create' %}"> Create Bug</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link " href="{% url 'bug_search' %}"> All Bugs</a>
+        <li class="nav-item active">
+            <a class="nav-link " href="{% url 'bug' %}"> All Bug</a>
         </li>
         
         
@@ -62,19 +62,9 @@ Create A Bug
                                     
                                 </div>
                             </div>
-<!--                                <label class="fieldlabels">Program: *</label>
-                                <input type="text" name="program" class="form-control" id="" value="" placeholder="Name of the program" required  />-->
-
-                            <label class="fieldlabels">Program *</label>
-                            <select class="form-control" id="exampleFormControlSelect1" name="program" required>
-                                {% for prod in products %}
-
-                                <option>{{prod.name}}</option>
-
-                                {% endfor %}
-                              </select>
-
-                            <label class="fieldlabels">Report Type: *</label>
+                                <label class="fieldlabels">Program: *</label> 
+                                <input type="text" name="program" class="form-control" id="" value="" placeholder="Name of the program" required  /> 
+                                <label class="fieldlabels">Report Type: *</label>
                                 <select class="form-control" id="exampleFormControlSelect1" name="report_type"  required>
                                   <option>Coding Error</option>
                                   <option>Design Issue</option>
@@ -121,15 +111,14 @@ Create A Bug
                             <label class="fieldlabels">Comment: *</label> 
                             <textarea  name="comment" class="form-control" value="" placeholder="Comment "  ></textarea>
 
-
-                            <!--<label class="fieldlabels">Product: *</label>
+                            <label class="fieldlabels">Product: *</label> 
                             <select class="form-control" id="exampleFormControlSelect1" name="product" required>
                                 {% for prod in products %}
                                 
                                 <option>{{prod.name}}</option>
                                 
                                 {% endfor %}
-                              </select>-->
+                              </select>
 
                             <label class="fieldlabels">Resolved By: *</label> 
                             <select class="form-control" id="exampleFormControlSelect1" name="resolved_by" >

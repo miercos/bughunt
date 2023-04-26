@@ -193,7 +193,7 @@ def bug_create(request):
         resolution = request.POST.get('resolution')
         resolved_by = Employee.objects.get(name=request.POST.get('resolved_by'))
         tested_by = request.POST.get('tested_by')
-        # product = Product.objects.get(name=request.POST.get('product'))
+        product = Product.objects.get(name=request.POST.get('product'))
         # created_by = Employee.objects.get(name=request.POST.get('created_by'))
         
         Bugs.objects.create(
@@ -212,8 +212,8 @@ def bug_create(request):
             priority=priority,
             resolution=resolution,
             resolved_by=resolved_by,
-            tested_by=tested_by
-            # product=product,
+            tested_by=tested_by,
+            product=product,
             # created_by=created_by
         )
         return redirect('bug')
@@ -245,7 +245,7 @@ def bug_update(request, pk):
             bug.resolution = request.POST.get('resolution')
             bug.resolved_by = Employee.objects.get(name=request.POST.get('resolved_by'))
             bug.tested_by = request.POST.get('tested_by')
-            # bug.product = Product.objects.get(name=request.POST.get('product'))
+            bug.product = Product.objects.get(name=request.POST.get('product'))
             # bug.created_by = Employee.objects.get(name=request.POST.get('created_by'))
             
             bug.save()
@@ -262,47 +262,6 @@ def bug_delete(request, pk):
     bug = Bugs.objects.get(pk=pk)
     bug.delete()
     return redirect('bug')
-
-def bug_search(request):
-    if request.method == 'POST':
-        program = request.POST.get('program')
-        report_type = request.POST.get('report_type')
-        fun_area = request.POST.get('fun_area')
-        #assigned_to = Employee.objects.get(name=request.POST.get('assigned_to'))
-        #reported_by = Employee.objects.get(name=request.POST.get('report_by'))
-        assigned_to = request.POST.get('assigned_to')
-        reported_by = request.POST.get('report_by')
-        status = request.POST.get('status')
-        priority = request.POST.get('priority')
-        resolution = request.POST.get('resolution')
-        print(assigned_to)
-
-        bugs = Bugs.objects.all()
-        if program != 'All':
-            bugs = Bugs.objects.filter(program = program)
-        if report_type != 'All':
-            bugs = Bugs.objects.filter(report_type = report_type)
-        if fun_area != 'All':
-            bugs = Bugs.objects.filter(fun_area = fun_area)
-        if assigned_to != 'All':
-            assigned_to = Employee.objects.get(name=request.POST.get('assigned_to'))
-            bugs = Bugs.objects.filter(assigned_to = assigned_to)
-        if reported_by != 'All':
-            reported_by = Employee.objects.get(name=request.POST.get('report_by'))
-            bugs = Bugs.objects.filter(report_by = reported_by)
-        if status != 'All':
-            bugs = Bugs.objects.filter(status=status)
-        if priority != 'All':
-            bugs = Bugs.objects.filter(priority=priority)
-        if resolution != 'All':
-            bugs = Bugs.objects.filter(resolution=resolution)
-
-        return render(request, 'bug_list.html', {'bugs': bugs})
-
-    employees = Employee.objects.all()
-    programs = Product.objects.all()
-    areas = Area.objects.all()
-    return render(request, 'bug_search.html', {'employees': employees, 'programs': programs, 'areas': areas})
 
 
 def database_managment(request):
