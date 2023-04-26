@@ -16,7 +16,7 @@ HOME
     <a class="nav-link " href="{% url 'bug_create' %}"> Create Bug</a>
 </li>
 <li class="nav-item ">
-  <a class="nav-link " href="{% url 'bug_search' %}"> All Bugs</a>
+  <a class="nav-link " href="{% url 'bug' %}"> ALL Bug</a>
 </li>
    
 </ul>
@@ -61,8 +61,7 @@ HOME
                         
                       </a>
                       </div>
-
-                      {% if emp.user_level == 'Admin' %}
+                      {% if emp.user_level == "Admin" %}
                       <div class="col-xs-6 col-md-4">
                         <a href="{% url 'database_managment' %}">
                           <div class="btn btn-4 hover-border-2">
